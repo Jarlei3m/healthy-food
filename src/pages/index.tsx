@@ -8,7 +8,7 @@ import { BestServices } from '../components/BestServices';
 import { Blog } from '../components/Blog';
 import { JoinMembership } from '../components/JoinMembership';
 import { Footer } from '../components/Footer';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import { useState } from 'react';
 import { RegisterModal } from '../components/RegisterModal';
 
@@ -73,7 +73,7 @@ export default function Home({ recipes, blogs }: HomeProps) {
   )
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   //  get recipes
   const response = await axios.get('http://localhost:3000/api/recipes');
   const recipes = await response.data;
