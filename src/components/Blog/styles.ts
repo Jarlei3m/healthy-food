@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const BlogContainer = styled.section`
   width: 100vw;
-  /* height: 48rem; */
   height: 100vh;
   background: var(--background-alt);
 
@@ -12,7 +11,6 @@ export const BlogContainer = styled.section`
 
 export const BlogContent = styled.div`
   width: 100vw;
-  /* margin: 0 auto; */
   @media(max-width: 425px) {
     position: relative;
   }
@@ -53,7 +51,6 @@ export const CardsContainer = styled.article`
   margin-left: 8.5625rem;
   padding: 2rem 0 ;
   overflow: hidden;
-  /* overflow: auto; */
 
   @media(max-width: 425px) {
     position: unset;
@@ -136,13 +133,10 @@ export const CardsContainer = styled.article`
 export const Card = styled.a`
   display: flex;
   flex-direction: column;
-  /* margin: 0 auto; */
 
-  /* width: 100%; */
   min-width: 21.75rem;
   max-width: 21.75rem;
   height: 28.125rem;
-  /* height: auto; */
 
   padding-bottom: 2.1875rem;
 

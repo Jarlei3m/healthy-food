@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const BestRecipesContainer = styled.section`
   width: 100vw;
-  /* height: 48rem; */
   height: 100vh;
   background: var(--background-alt);
 
@@ -72,7 +71,6 @@ export const Card = styled.div`
   width: 100%;
   max-width: 33rem;
   height: 14.0625rem;
-  /* height: auto; */
 
   background: var(--white);
   border-radius: 0.3rem;

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const JoinMembershipContainer = styled.section `
   width: 100vw;
-  /* height: 42rem; */
   position: relative;
 
   overflow-x: hidden;
@@ -25,8 +24,6 @@ export const JoinMembershipContent = styled.section `
     padding-left: 2rem;
   }
 
-  /* justify-content: space-between; */
-  
   div {
     z-index: 10;
     @media(max-width: 1240px) {
@@ -81,7 +78,6 @@ export const JoinMembershipContent = styled.section `
         align-items: center;
         justify-content: center;
         
-        /* width: 24.6875rem; */
         height: 3.375rem;
         width: 5.8125rem;
 

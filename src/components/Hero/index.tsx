@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
-import Modal from 'react-modal';
 import Link from 'next/link';
+import { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { HeaderContent, HeroContainer, HeroContent, ImageSmall, ImageWide, MenuSmall, MenuWide } from './styles';
 
@@ -9,29 +8,11 @@ interface HeroProps {
 }
 
 export function Hero({ onOpenRegisterModal }: HeroProps) {
-  const [ hasNavBar, setHasNavBar ] = useState(false);
   const [ isNavModalOpen, setIsNavModalOpen ] = useState(null);
-  const [ widthSize, setWidthSize ] = useState(0)
 
   function handleNavModalOpen() {
     setIsNavModalOpen(!isNavModalOpen)
   }
-
-  const handleResize = () => {
-    setWidthSize(window.innerWidth);
-
-    if (window.innerWidth <= 580) {
-      setHasNavBar(true);
-    } else {
-      setHasNavBar(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('load', handleResize);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('load', handleResize);
-  });
 
   return (
     <HeroContainer>

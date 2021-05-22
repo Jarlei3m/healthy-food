@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const BestServicesContainer = styled.section`
   width: 100vw;
-  /* height: 45.4375rem; */
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -16,10 +15,6 @@ export const BestServicesContent = styled.div`
   
   display: flex;
   align-items: center;
-
-  /* @media(max-width: 1080px) {
-    justify-content: flex-end;
-  } */
 
   @media(max-width: 1165px) {
     padding-right: 4rem;
