@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Modal from 'react-modal';
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
 import { Hero } from '../components/Hero';
 import { BestRecipes } from '../components/BestRecipes';
 import { BestServices } from '../components/BestServices';
@@ -65,7 +66,8 @@ export default function Home({ recipes, blogs }: HomeProps) {
         <RegisterModal 
           isOpen={isRegisterModalOpen}
           onRequestClose={handleCloseRegisterModal}
-        />  
+        />
+        <ToastContainer />
       </>
     </>
   )

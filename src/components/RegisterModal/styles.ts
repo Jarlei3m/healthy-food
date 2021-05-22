@@ -38,6 +38,7 @@ export const RegisterContainer = styled.form`
       flex-direction: column;
 
       margin-bottom: 1.4rem;
+      position: relative;
 
       & + div {
         margin-left: 1.4rem;
@@ -45,20 +46,27 @@ export const RegisterContainer = styled.form`
     }
 
 
-    input, select {
+    input {
       background-color: #f0f0f5;
 
       border: 1px solid var(--blue);
       padding: 1rem 1.5rem;
       border-radius: .5rem;
-
       font-size: 1rem;
+
+      &:disabled {
+        cursor: not-allowed;
+        filter: brightness(.8);
+      }
     }
 
-    select {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
+    span {
+      position: absolute;
+      bottom: -0.9375rem;
+      left: .5rem;
+      color: #C7283A;
+      opacity: 1;
+      font-size: .7rem;
     }
 
     label {
@@ -92,6 +100,16 @@ export const RegisterContainer = styled.form`
 
       &:hover {
         filter: brightness(.9);
+      }
+
+      @media(max-width: 425px) {
+        width: 14rem;
+        height: 3rem;
+      }
+
+      @media(max-width: 320px) {
+        width: 10rem;
+        height: 3rem;
       }
     }
 

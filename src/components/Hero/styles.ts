@@ -2,11 +2,9 @@ import styled from 'styled-components';
 
 export const HeroContainer = styled.section `
   width: 100vw;
-  /* height: 48rem; */
   height: 100vh;
   position: relative;
   overflow: hidden;
-  /* margin-top: -6.4375rem; */
 `
 
 export const HeroContent = styled.section `
@@ -25,10 +23,9 @@ export const HeroContent = styled.section `
     padding-left: 2rem;
   }
 
-  /* justify-content: space-between; */
-  
   article {
     margin-top: -6.4375rem;
+    z-index: 10;
 
     @media(max-width: 1165px) {
       margin-top: -12rem;
@@ -43,7 +40,6 @@ export const HeroContent = styled.section `
       line-height: 4.3rem;
       margin-bottom: 1.4rem;
       max-width: 25rem;
-
 
       @media(max-width: 1240px) {
         font-size: 2.8rem;
@@ -97,7 +93,6 @@ export const HeroContent = styled.section `
         align-items: center;
         justify-content: center;
         
-        /* width: 24.6875rem; */
         height: 100%;
         width: 3.25rem;
 
@@ -118,61 +113,68 @@ export const HeroContent = styled.section `
       }
     }
   }
+` 
 
-  img {
+export const ImageWide = styled.img`
     position: absolute;
     top: 0;
     right: 0;
     bottom: 1.5rem;
 
     @media(max-width: 1165px) {
-      /* height: 90%; */
       transform: translateX(10%);
     }
 
-    @media(max-width: 1080px) {
-      /* height: 87%; */
-      /* transform: translateX(20%); */
-    }
-
     @media(max-width: 1024px) {
-      /* height: 80%; */
       transform: translateX(15%);
     }
 
     @media(max-width: 980px) {
-      /* display: none; */
       transform: translateX(18%);
     }
 
     @media(max-width: 899px) {
-      /* height: 60%; */
-      transform: translateX(45%);
-
+      display: none;
+      visibility: hidden;
+      opacity: 0;
     }
+`;
 
-    @media(max-width: 745px) {
-      transform: translateX(50%);
-    }
+export const ImageSmall = styled.img`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 1.5rem;
+  transform: translateX(45%);
 
-    @media(max-width: 580px) {
-      transform: translateX(70%);
-    }
+  display: none;
+  visibility: hidden;
+  opacity: 0;
 
-    @media(max-width: 424px) {
-      transform: translateX(75%);
-    }
-
-    @media(max-width: 374px) {
-      transform: translateX(81%);
-    }
-
+  @media(max-width: 899px) {
+    display: unset;
+    visibility: visible;
+    opacity: 1;
   }
-` 
+
+  @media(max-width: 745px) {
+    transform: translateX(50%);
+  }
+
+  @media(max-width: 580px) {
+    transform: translateX(70%);
+  }
+
+  @media(max-width: 424px) {
+    transform: translateX(75%);
+  }
+
+  @media(max-width: 374px) {
+    transform: translateX(81%);
+  }
+`
 
 export const HeaderContent = styled.header`
-  /* max-width: 109rem; */
-  /* width: 100%; */
   max-width: 100vw;
   height: 6.4375rem;
   margin: 0 auto;
@@ -199,71 +201,89 @@ export const HeaderContent = styled.header`
       white-space: nowrap;
     }
   }
+`
 
-  div {
+export const MenuWide = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  @media(max-width: 685px) {
+    gap: 1rem;
+  }
+
+  @media(max-width: 580px) {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  nav {
     display: flex;
     align-items: center;
     gap: 2rem;
+    z-index: 5;
 
     @media(max-width: 685px) {
       gap: 1rem;
     }
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      z-index: 5;
-
-      @media(max-width: 685px) {
-        gap: 1rem;
-      }
-
-      a {
-        text-transform: uppercase;
-        color: var(--white);
-        font-size: 1rem;
-        line-height: .8rem;
-        font-weight: bold;
-
-        @media(max-width: 425px) {
-          white-space: nowrap;
-        }
-      }
-    }
-
-    button {
-      height: 3.25rem;
-      width: 8.25rem;
-      border: none;
-      background: var(--white);
-      border-radius: .3rem;
-      color: var(--green);
+    a {
       text-transform: uppercase;
-      z-index: 5;
-
-      transition: all .2s ease;
-      
-      &:hover {
-        background: var(--green);
-        color: var(--white);
-      }
-
-
+      color: var(--white);
       font-size: 1rem;
-      font-family: 'Muli';
+      line-height: .8rem;
       font-weight: bold;
+
+      @media(max-width: 425px) {
+        white-space: nowrap;
+      }
     }
   }
 
-  /* navbar */
+  button {
+    height: 3.25rem;
+    width: 8.25rem;
+    border: none;
+    background: var(--white);
+    border-radius: .3rem;
+    color: var(--green);
+    text-transform: uppercase;
+    z-index: 5;
 
+    transition: all .2s ease;
+    
+    &:hover {
+      background: var(--green);
+      color: var(--white);
+    }
+
+
+    font-size: 1rem;
+    font-family: 'Muli';
+    font-weight: bold;
+  }
+
+`
+
+export const MenuSmall = styled.div`
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+
+  @media(max-width: 580px) {
+    display: unset;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* navbar */
   .navMenu {
-    position: fixed;
+    position: absolute;
     right: 2rem;
     top: 2.5rem;
 
-    z-index: 20;
+    z-index: 20;    
 
     div {
       height: 2px;
@@ -271,7 +291,7 @@ export const HeaderContent = styled.header`
       margin-bottom: 4px;
 
       background-color: var(--blue);
-      transition: all 0.5s ease-in-out;
+      transition: all 0.3s ease-in-out;
     }
 
     &.close {
@@ -293,23 +313,27 @@ export const HeaderContent = styled.header`
 
   /* menu modal */
   .menuModal {
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .8);
+    width: 35%;
+    height: 45%;
     opacity: 0;
 
-    transform: translateY(-100%);
-    transition: all 0.5s ease-out;
+    transform: translateX(100%);
+    transition: all 0.3s ease-out;
 
     z-index: 15;
 
+    @media(max-width: 320px){
+      width: 35%;
+      height: 30%;
+    }
+
     &.opened {
       opacity: .9;
-      transform: translateY(0);
+      transform: translateX(0);
     }
 
     nav {
@@ -318,21 +342,54 @@ export const HeaderContent = styled.header`
       justify-content: center;
       flex-direction: column;
 
-      gap: 6rem;
+      gap: 2rem;
 
       width: 100%;
       height: 100%;
 
-      a {
-        font-size: 2rem;
+      @media(max-width: 320px) {
+        gap: 1.5rem;        
       }
 
+      a {
+        text-transform: uppercase;
+        color: var(--white);
+        font-size: 1.2rem;
+        line-height: .8rem;
+        font-weight: bold;
+
+        @media(max-width: 320px) {
+          font-size: 1rem;
+        }      
+      }      
+
       button {
-        height: 5rem;
-        font-size: 1.4rem;
-        width: 17rem;
+        height: 3.5rem;
+        width: 7.6rem;
+        font-size: 1rem;
+        font-family: 'Muli';
+        font-weight: bold;
+
+        border: none;
+        background: var(--white);
+        border-radius: .3rem;
+        color: var(--green);
+        text-transform: uppercase;
+        z-index: 5;
+
+        transition: all .2s ease;
+        
+        &:hover {
+          background: var(--green);
+          color: var(--white);
+        }
+
+        @media(max-width: 320px) {
+          height: 3rem;
+          font-size: .8rem;
+          width: 6.5rem;
+        }
       }
     }
   }
-
 `

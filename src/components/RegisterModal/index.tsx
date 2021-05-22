@@ -1,5 +1,6 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext } from 'react';
 import Modal from 'react-modal';
+import { RegisterContext } from '../../contexts/RegisterContext';
 import { RegisterContainer } from './styles';
 
 interface RegisterModalProps {
@@ -8,34 +9,36 @@ interface RegisterModalProps {
 }
 
 export function RegisterModal({ isOpen, onRequestClose }: RegisterModalProps) {
-  const [ name, setName ] = useState('');
-  const [ birthday, setBirthday ] = useState('');
-  const [ cpf, setCpf ] = useState('');
-  const [ cep, setCep ] = useState('');
-  const [ address, setAddress ] = useState('');
-  const [ address2, setAddress2 ] = useState('');
-  const [ state, setState ] = useState('');
-  const [ city, setCity ] = useState('');
+  const { 
+    handleChange, 
+    handleKeyUp, 
+    handleCreateRegister,
+    isCepValid,
+    isCpfValid,
+    isDateValid,
+    user,
+    isFilled,
+    handleAutomaticFilledInputs 
+  } = useContext(RegisterContext)
 
-
-  function handleCreateRegister(e: FormEvent) {
-    e.preventDefault();
-
-    const data = {
-      name,
-      birthday,
-      cpf,
-      cep,
-      address,
-      address2,
-      state,
-      city,
-    }
-
-    console.log(data)
-
+  const errors = {
+    userCep: 'Por favor, insira um cep válido',
+    userCpf: 'Por favor, insira um cpf válido',
   }
-  
+
+  function handleSubmit(e: FormEvent) {
+    handleCreateRegister(e);
+    if (isCepValid && isCpfValid && isDateValid) {
+      onRequestClose();
+      handleAutomaticFilledInputs(false);
+    }
+  }
+
+  function handleCloseRegisterModal() {
+    onRequestClose();
+    handleAutomaticFilledInputs(false);
+  }
+
   return (
     <Modal 
       isOpen={isOpen} 
@@ -43,7 +46,7 @@ export function RegisterModal({ isOpen, onRequestClose }: RegisterModalProps) {
       overlayClassName='react-modal-overlay'
       className='react-modal-content'
     >
-      <RegisterContainer onSubmit={handleCreateRegister}>
+      <RegisterContainer onSubmit={handleSubmit}>
         <h1>Registro de Usuário</h1>
 
         <fieldset>
@@ -55,23 +58,22 @@ export function RegisterModal({ isOpen, onRequestClose }: RegisterModalProps) {
             <div>
               <label htmlFor="name">Nome</label>
               <input 
-                value={name} 
                 type="text" 
                 name='name' 
                 required 
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleChange}
               />
             </div>
 
             <div>
               <label htmlFor="birthday">Data de nascimento</label>
               <input 
-                value={birthday}
+                onKeyUp={handleKeyUp}
                 type="text" 
                 name='birthday' 
-                placeholder='xx/xx/xxxx' 
+                placeholder='__/__/____' 
                 required 
-                onChange={(e) => setBirthday(e.target.value)}
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -80,23 +82,37 @@ export function RegisterModal({ isOpen, onRequestClose }: RegisterModalProps) {
             <div>
               <label htmlFor="cpf">CPF</label>
               <input 
-                value={cpf} 
+                onKeyUp={handleKeyUp}
                 type="text" 
                 name='cpf'
+                placeholder='___.___.___-__'
                 required 
-                onChange={(e) => setCpf(e.target.value)}
+                onChange={handleChange}
               />
+              {!isCpfValid && (
+                <span 
+                  >
+                    {errors.userCpf}
+                </span>
+              )}
             </div>
 
             <div>
               <label htmlFor="cep">CEP</label>
               <input 
-                value={cep}
+                onKeyUp={handleKeyUp}
                 type="text" 
-                name='cep' 
+                name='cep'      
+                placeholder='_____-__'           
                 required 
-                onChange={(e) => setCep(e.target.value)}
+                onChange={handleChange}
               />
+              {!isCepValid && (
+                <span 
+                  >
+                    {errors.userCep}
+                </span>
+              )}
             </div>
           </div>
 
@@ -104,72 +120,55 @@ export function RegisterModal({ isOpen, onRequestClose }: RegisterModalProps) {
             <div>
               <label htmlFor="address">Endereço</label>
               <input 
-                value={address}
+                value={isFilled ? user.address : ''}
                 type="text" 
                 name='address' 
                 required 
-                onChange={(e) => setAddress(e.target.value)}
+                disabled={!isFilled}
+                onChange={handleChange}
               />
             </div>
 
             <div>
               <label htmlFor="address2">Número/Complemento</label>
               <input 
-                value={address2}
                 type="text" 
                 name='address2' 
                 required 
-                onChange={(e) => setAddress2(e.target.value)}
+                onChange={handleChange}
               />
             </div>
           </div>
-
+         
           <div className='field-group'>
             <div>
               <label htmlFor="state">Estado</label>
-              <select 
-                name="state" 
-                // required
-              >
-                <option 
-                  value={state} 
-                >
-                  Selecione o Estado
-                </option>
-              </select>
-
-              <input
-                value={state} 
-                type="hidden" 
+              <input 
+                value={isFilled ? user.state : ''}
+                type="text" 
                 name='state' 
-                // required 
-                onChange={(e) => setCpf(e.target.value)}
+                required 
+                disabled={!isFilled}
+                onChange={handleChange}
               />
             </div>
 
             <div>
               <label htmlFor="city">Cidade</label>
-              <select name="city" disabled >
-                <option 
-                  value={city}
-                >
-                  Selecione a Cidade
-                </option>
-              </select>
-
-              <input
-                value={city} 
-                type="hidden" 
-                name='state' 
-                // required 
-                onChange={(e) => setCity(e.target.value)}
+              <input 
+                value={isFilled ? user.city : ''}
+                type="text" 
+                name='city' 
+                required 
+                disabled={!isFilled}
+                onChange={handleChange}
               />
             </div>
           </div>
 
           <div className='btns'>
             <button type='submit'>Registrar</button>
-            <button type='button' onClick={onRequestClose}>Cancelar</button>
+            <button type='button' onClick={handleCloseRegisterModal}>Cancelar</button>
           </div>
         </fieldset>
 

@@ -5,7 +5,7 @@ export const BestServicesContainer = styled.section`
   /* height: 45.4375rem; */
   height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 `
 
 export const BestServicesContent = styled.div`

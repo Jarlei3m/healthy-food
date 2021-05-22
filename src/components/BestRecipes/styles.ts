@@ -5,6 +5,8 @@ export const BestRecipesContainer = styled.section`
   /* height: 48rem; */
   height: 100vh;
   background: var(--background-alt);
+
+  overflow-y: hidden;
 `
 
 export const BestRecipesContent = styled.div`

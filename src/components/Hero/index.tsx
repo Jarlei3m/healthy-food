@@ -2,22 +2,29 @@ import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import Link from 'next/link';
 import { BiSearch } from 'react-icons/bi';
-import { HeaderContent, HeroContainer, HeroContent } from './styles';
+import { HeaderContent, HeroContainer, HeroContent, ImageSmall, ImageWide, MenuSmall, MenuWide } from './styles';
 
 interface HeroProps {
   onOpenRegisterModal: () => void;
 }
 
 export function Hero({ onOpenRegisterModal }: HeroProps) {
-  const [ newSize, setNewSize ] = useState(null);
-  const [ isNavModalOpen, setIsNavModalOpen ] = useState(false);
+  const [ hasNavBar, setHasNavBar ] = useState(false);
+  const [ isNavModalOpen, setIsNavModalOpen ] = useState(null);
+  const [ widthSize, setWidthSize ] = useState(0)
 
   function handleNavModalOpen() {
     setIsNavModalOpen(!isNavModalOpen)
   }
 
   const handleResize = () => {
-     setNewSize(window.innerWidth);
+    setWidthSize(window.innerWidth);
+
+    if (window.innerWidth <= 580) {
+      setHasNavBar(true);
+    } else {
+      setHasNavBar(false);
+    }
   };
 
   useEffect(() => {
@@ -31,8 +38,7 @@ export function Hero({ onOpenRegisterModal }: HeroProps) {
       <HeaderContent>
         <h1>Healthy Food</h1>
 
-        {newSize > 425 ? (
-          <div>
+          <MenuWide>
             <nav>
               <Link href='/healthy-recipes'>
                 <a>
@@ -52,9 +58,9 @@ export function Hero({ onOpenRegisterModal }: HeroProps) {
             </nav>
 
             <button type='button' onClick={onOpenRegisterModal}>Register</button>
-          </div>
-        ) : (
-          <>
+          </MenuWide>
+
+          <MenuSmall>
             <nav
               className={isNavModalOpen ? 'navMenu close' : 'navMenu'}
               onClick={() => handleNavModalOpen()}
@@ -85,8 +91,7 @@ export function Hero({ onOpenRegisterModal }: HeroProps) {
               </nav>
 
             </div>
-          </>
-        )}
+          </MenuSmall>
         
       </HeaderContent>
 
@@ -102,11 +107,8 @@ export function Hero({ onOpenRegisterModal }: HeroProps) {
           </div>
         </article>
 
-        {newSize > 899? (
-          <img src="images/Illustration.svg" alt="" />
-        ) : (
-          <img src="images/bg.svg" alt="" />
-        )}
+        <ImageWide src="images/Illustration.svg" alt="Healthy food background" />
+        <ImageSmall src="images/bg.svg" alt="Healthy food background" />
       </HeroContent>
     </HeroContainer>
   )

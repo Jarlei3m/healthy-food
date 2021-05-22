@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -115,5 +116,56 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
     border-radius: .5rem;
     padding: 4rem;
+
+    @media(max-width: 425px) {
+      max-width: 38rem;
+      padding: 2rem;
+    }
+
+    @media(max-width: 425px) {
+      max-width: 36rem;
+    }
+
+    @media(max-width: 320px) {
+      max-width: 31rem;
+      padding: 1.8rem .5rem;
+    }
   }
+
+  
+.Toastify__toast-container {
+  right: 0;
+  left: unset;
+  width: 22vw;
+
+  @media(max-width: 720px) {
+    width: 35vw;
+  }
+
+  @media(max-width: 480px) {
+    margin: 1rem;
+  }
+
+  @media(max-width: 425px) {
+    width: 50vw;
+  }
+
+  @media(max-width: 480px) {
+    margin: 0.1rem;
+  }
+}
+
+.Toastify__toast--success {
+  background-color: var(--green);
+}
+
+.Toastify__toast {
+  min-height: 2.8125rem;
+  border-radius: 4px;
+
+
+    @media(max-width: 425px) {
+    margin: 1rem .5rem;
+  }
+}
 `

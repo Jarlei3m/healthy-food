@@ -31,6 +31,11 @@ export const FooterContent = styled.div`
 
     a {
       color: var(--text);
+      transition: filter .2s ease;
+
+      &:hover {
+        filter: brightness(.9)
+      }
     }
   }
 
