@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Modal from 'react-modal';
 import axios from 'axios';
+import { config } from '../services/endpoits'
 import { ToastContainer } from 'react-toastify';
 import { Hero } from '../components/Hero';
 import { BestRecipes } from '../components/BestRecipes';
@@ -74,12 +75,14 @@ export default function Home({ recipes, blogs }: HomeProps) {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  const url = config.url.API_URL;
+  
   //  get recipes
-  const response = await axios.get('http://localhost:3000/api/recipes');
+  const response = await axios.get(`${url}/api/recipes`);
   const recipes = await response.data;
 
   //  get blogs
-  const res = await axios.get('http://localhost:3000/api/blogs');
+  const res = await axios.get(`${url}/api/blogs`);
   const blogs = await res.data;
 
   return {
